@@ -7,18 +7,18 @@ Hallo, ich hätte gern genau so etwas, was du da hast, für meine Sklavin.
 Hello, welcome to the store.
 Hallo, willkommen im Laden.
 ###_NPC
-Thanks, do you have it in multiple colors?
+Thanks, do you have it in multiple colours?
 Danke, habt ihr das in verschiedenen Farben?
 ###_PLAYER
 (Nod happily.)
 (Glücklich nicken.)
 ###_NPC
-Do you have it in multiple colors?
+Do you have it in multiple colours?
 Habt ihr das in verschiedenen Farben?
 ###_PLAYER
 (Nod politely.)
 (Höflich nicken.)
-In every possible color.
+In every possible colour.
 In allen möglichen Farben.
 ###_NPC
 Very good, and do you have a larger size?  My girl has a big head.

@@ -239,7 +239,7 @@ Natürlich um bezaubernd auszusehen, außerdem haben diese Kleider hohe Taillen,
 What about long skirts?
 Was ist mit langen Röcken?
 ###_NPC
-Goodness me, certainly not.  We want out adult babies to look thier best, but that must not interfere with making sure they have clean diapers.
+Goodness me, certainly not.  We want out adult babies to look their best, but that must not interfere with making sure they have clean diapers.
 Gute Güte, auf gar keinen Fall. Unsere großen Babys sollen stets bestens gekleidet sein, aber wir müssen dennoch ihre Windeln kontrollieren können.
 ###_PLAYER
 No way am I dressing like that.
@@ -652,10 +652,10 @@ Kann ich ein anderes Kleid anprobieren?
 You may, but you will have to pay $5 for the extra laundry.
 Kannst du, aber du müsstest 5$ für die Extrawäsche bezahlen.
 ###_PLAYER
-Do you have this style of dress in another color?
+Do you have this style of dress in another colour?
 Gibt es dieses Kleid auch in einer anderen Farbe?
 ###_NPC
-Yes.  The nursery has quite a stock of dresses in many lovely colors, but you will have to pay $5 for the extra laundry.
+Yes.  The nursery has quite a stock of dresses in many lovely colours, but you will have to pay $5 for the extra laundry.
 Ja. Die Kinderstube hat eine große Auswahl an Kleidern in vielen entzückenden Farben, aber du müsstest 5$ für die Extrawäsche bezahlen.
 ###_PLAYER
 I just want to wear my birthday suit.
@@ -664,7 +664,7 @@ Ich hätte am liebsten gar nichts an.
 I suppose you may.  Do you want me to put that dress for washing?
 Das dürfte in Ordnung gehen. Soll ich dieses Kleid für dich in die Wäsche geben?
 ###_PLAYER
-Can I choose the dress style and color please?
+Can I choose the dress style and colour please?
 Darf ich den Kleidstil und die Farbe wählen?
 ###_NPC
 Sorry, that would be a very big decision for an ickle baby to make, but I'm sure I can pick out something delightful for you to wear.
@@ -708,7 +708,7 @@ Ich schätze, das ist okay.
 It suits you just fine. Try it for a while and I am sure you will grow to love it.
 Es steht dir genau richtig. Probiere es eine Weile aus, du wirst dich ganz sicher darin verlieben.
 ###_PLAYER
-I like this dress, but can I have it in another color?
+I like this dress, but can I have it in another colour?
 Ich mag das Kleid, aber geht auch eine andere Farbe?
 ###_NPC
 Of course you may, but that dress will have to be laundered now so you will have to pay an extra $5.
@@ -724,7 +724,7 @@ Zu spät, dieses Kleid wurde bereits in die Wäsche gebracht.
 It suits you just fine.  Try it for a while and I am sure you will grow to love it.
 Es steht dir genau richtig. Probiere es eine Weile aus, du wirst dich ganz sicher darin verlieben.
 ###_PLAYER
-Hmmm, I want to try this dress in another color.
+Hmmm, I want to try this dress in another colour.
 Hmmm, ich will dieses Kleid in einer anderen Farbe.
 Okay.
 Okay.

@@ -97,7 +97,7 @@ RemoveSuspensionHempRope,,,(She breathes.) Finally.  What should that be?,,
 151,,(Turn away.),,DialogLeave(),
 152,,(wait),,SelectTrick(),
 160,,,"Now the classic. Despite being handcuffed, she is able to escape from a water-filled milk can?",,
-160,,(Dive skillfully under the water.),,TrickBoxMilkCan(),
+160,,(Dive skilfully under the water.),,TrickBoxMilkCan(),
 161,,,(Fastens the lid with three bolts.) ,,
 161,162,I am Houdini's true heritage.,Cheers for the feat.,,!Player.IsRestrained()
 161,0,(breathe) I have enough. ,(She gives you the income of REPLACEMONEY $.) Thanks for Show.,ShowPayoff(),!Player.IsRestrained()
