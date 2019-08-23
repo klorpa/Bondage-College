@@ -440,7 +440,7 @@ function CharacterRandomUnderwear(C) {
 			A--;
 		}
 
-	// Generate random undies at a random colour
+	// Generate random undies at a random color
 	var Color = "";
 	for(var A = 0; A < AssetGroup.length; A++)
 		if ((AssetGroup[A].Category == "Appearance") && AssetGroup[A].Underwear && (AssetGroup[A].IsDefault || (Math.random() < 0.2))) {

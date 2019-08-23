@@ -239,7 +239,7 @@ function NurseryRandomDressSelection() {
 	if (RandomResultB == PreviousDress) NurseryRandomDressSelection();
 }
 
-// Random selection for dress colours
+// Random selection for dress colors
 function NurseryRandomColourSelection() {
 	PreviousDressColor = RandomResult
 	RandomNumber = Math.floor(Math.random() * 12);

@@ -326,7 +326,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * and the Firebug extension (any Firefox version) are known
 	 * to support "%c" CSS customizations.
 	 *
-	 * TODO: add a `localStorage` variable to explicitly enable/disable colours
+	 * TODO: add a `localStorage` variable to explicitly enable/disable colors
 	 */
 	
 	function useColors() {
@@ -337,7 +337,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return true;
 	  }
 	
-	  // Internet Explorer and Edge do not support colours.
+	  // Internet Explorer and Edge do not support colors.
 	  if (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
 	    return false;
 	  }
@@ -368,7 +368,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	/**
-	 * Colourize log arguments if enabled.
+	 * Colorize log arguments if enabled.
 	 *
 	 * @api public
 	 */
@@ -788,7 +788,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return match;
 	    });
 	
-	    // apply env-specific formatting (colours, etc.)
+	    // apply env-specific formatting (colors, etc.)
 	    exports.formatArgs.call(self, args);
 	
 	    var logFn = debug.log || exports.log || console.log.bind(console);

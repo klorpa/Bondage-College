@@ -21,11 +21,11 @@ Check the lock
 Vérifier le cadenas
 Use your remote
 Utiliser une télécommande
-Colour of next item
+Color of next item
 Couleur du prochain objet
-Use this colour
+Use this color
 Utiliser cette couleur
-Default colour
+Default color
 Couleur de base
 Challenge:
 Difficulté:

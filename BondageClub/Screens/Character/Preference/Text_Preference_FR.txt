@@ -1,6 +1,6 @@
 - Preferences -
 - Préférences -
-Character label colour:
+Character label color:
 Couleur du nom:
 Item permission:
 Permissions d'objets:
@@ -14,5 +14,5 @@ Owner and whitelist only
 Patronne et liste blanche seulement
 Owner only
 Patronne seulement
-Put a valid hex #red-green-blue colour
+Put a valid hex #red-green-blue color
 Entrez un code de couleur hex #rouge-vert-bleu valide

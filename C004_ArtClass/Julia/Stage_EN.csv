@@ -15,7 +15,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,Alright!  I|love painting.,Fabulous!  And today is special.|You will paint me like da Vinci.,40,1,0,
 30,0,0,,I don't know how to paint.,"Nonsense!  Everybody can paint.|And today, you will paint me like da Vinci.",40,0,-1,
 40,0,0,,Paint you?  I'll|need a bigger canvas.,(She stares at you.)  I assume you're|saying that because of my traditional dress.,50,-1,1,
-40,0,0,,Oh!  I'll need|lots of colours.,Si!  Especially if you want to|catch all the details of my traditional dress.,50,1,0,
+40,0,0,,Oh!  I'll need|lots of colors.,Si!  Especially if you want to|catch all the details of my traditional dress.,50,1,0,
 40,0,0,,This might be|too hard for me.,There are many details in my traditional|dress.  But I'm sure you can do a great job.,50,0,-1,
 50,0,0,,Let's see|that brush.,Fine.  Show me your Michelangelo|skills then.  (She takes a pose.),60,0,0,
 50,0,0,,I guess I can try.|(Sigh sadly.),Michelangelo doesn't try.  Michelangelo|does!  Do it!  (She takes a pose.),60,0,-1,
