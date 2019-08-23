@@ -714,7 +714,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.formatters = {};
 	
 	/**
-	 * Select a colour.
+	 * Select a color.
 	 * @param {String} namespace
 	 * @return {Number}
 	 * @api private

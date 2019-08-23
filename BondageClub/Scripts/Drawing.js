@@ -46,7 +46,7 @@ function DrawLoad() {
 	document.getElementById("MainCanvas").addEventListener("keypress", KeyDown);
 	document.getElementById("MainCanvas").tabIndex = 1000;	
 
-	// Font is fixed for now, colour can be set
+	// Font is fixed for now, color can be set
 	MainCanvas.font = "36px Arial";
 	MainCanvas.textAlign = "center";
 	MainCanvas.textBaseline = "middle";

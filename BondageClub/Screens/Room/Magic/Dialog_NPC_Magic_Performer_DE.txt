@@ -284,7 +284,7 @@ Ich brauche eine Pause von dieser Show.
 Now the classic. Despite being handcuffed, she is able to escape from a water-filled milk can?
 Jetzt kommt der Klassiker. Kann sie sich trotz ihrer Handschellen aus einer mit Wasser gefüllten Milchkanne befreien?
 ###_PLAYER
-(Dive skilfully under the water.)
+(Dive skillfully under the water.)
 (Gekonnt unter Wasser tauchen.)
 ###_NPC
 (Fastens the lid with three bolts.) 
