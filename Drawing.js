@@ -84,7 +84,7 @@ function DrawText(Text, X, Y, Color) {
 	if (Text.indexOf("ADD_MINUTES:") >= 0)
 		Text = Text.substring(0, Text.indexOf("ADD_MINUTES:"));
 
-	// Font is fixed for now, color can be set
+	// Font is fixed for now, colour can be set
 	MainCanvas.font = "24px Arial";
 	MainCanvas.fillStyle = Color;
 	MainCanvas.textAlign = "center";

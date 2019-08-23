@@ -1,6 +1,6 @@
 - Preferences -
 - Einstellungen -
-Character label color:
+Character label colour:
 Namenszug-Farbe:
 Item permission:
 Item-Berechtigung:
@@ -14,5 +14,5 @@ Owner and whitelist only
 Nur Besitzer und Whitelist
 Owner only
 Nur Besitzer
-Put a valid hex #red-green-blue color
+Put a valid hex #red-green-blue colour
 Bitte gültige #rot-grün-blau Hex-Farbe eingeben

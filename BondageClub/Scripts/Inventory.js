@@ -108,7 +108,7 @@ function InventoryGet(C, AssetGroup) {
 	return null;
 }
 
-// Makes the character wear an item, color can be undefined
+// Makes the character wear an item, colour can be undefined
 function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty) {
 	for (var A = 0; A < Asset.length; A++)
 		if ((Asset[A].Name == AssetName) && (Asset[A].Group.Name == AssetGroup)) {

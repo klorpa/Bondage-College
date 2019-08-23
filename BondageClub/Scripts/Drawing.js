@@ -46,7 +46,7 @@ function DrawLoad() {
 	document.getElementById("MainCanvas").addEventListener("keypress", KeyDown);
 	document.getElementById("MainCanvas").tabIndex = 1000;	
 
-	// Font is fixed for now, color can be set
+	// Font is fixed for now, colour can be set
 	MainCanvas.font = "36px Arial";
 	MainCanvas.textAlign = "center";
 	MainCanvas.textBaseline = "middle";
@@ -397,7 +397,7 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 // Draw a back & next button
 function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText) {
 
-	// Draw the button rectangle (makes half of the background cyan colored if the mouse is over it)
+	// Draw the button rectangle (makes half of the background cyan coloured if the mouse is over it)
 	var Split = Left + Width / 2;
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);

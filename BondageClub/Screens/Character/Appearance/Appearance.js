@@ -344,7 +344,7 @@ function AppearanceRun() {
 	DrawCharacter(C, 800, 0, 1);
 	DrawText(CharacterAppearanceHeaderText, 450, 40, "White", "Black");
 
-	// Out of the color picker
+	// Out of the colour picker
 	if (!CharacterAppearanceWardrobeMode && CharacterAppearanceColorPicker == "") {
 	
 		// Draw the top buttons with images
@@ -386,7 +386,7 @@ function AppearanceRun() {
 
 	} else {
 
-		// Draw the color picker
+		// Draw the colour picker
 		ElementPosition("InputColor", 1450, 65, 300);
 		DrawButton(1610, 37, 65, 65, "", "White", "Icons/Color.png");
 		DrawImage("Backgrounds/ColorPicker.png", 1300, 145);
@@ -467,7 +467,7 @@ function CharacterAppearanceNextItem(C, Group, Forward, Description) {
 	if (Description == true) return "None";
 }
 
-// Find the next color for the item
+// Find the next colour for the item
 function CharacterAppearanceNextColor(C, Group) {
 	
 	// For each item, we first find the item and pick the next one
@@ -475,12 +475,12 @@ function CharacterAppearanceNextColor(C, Group) {
 	for (var A = 0; A < AssetGroup.length; A++)
 		if (AssetGroup[A].Name == Group) {
 			
-			// Finds the next color
+			// Finds the next colour
 			var Pos = AssetGroup[A].ColorSchema.indexOf(Color) + 1;
 			if ((Pos < 0) || (Pos >= AssetGroup[A].ColorSchema.length)) Pos = 0;
 			Color = AssetGroup[A].ColorSchema[Pos];
 
-			// Sets the color
+			// Sets the colour
 			for (Pos = 0; Pos < C.Appearance.length; Pos++)
 				if ((C.Appearance[Pos].Asset.Group.Name == Group) && (C.Appearance[Pos].Asset.Group.Family == C.AssetFamily))
 					C.Appearance[Pos].Color = Color;
@@ -501,7 +501,7 @@ function CharacterAppearanceMoveOffset(Move) {
 	if (CharacterAppearanceOffset < 0) CharacterAppearanceOffset = Math.floor(AssetGroup.length / CharacterAppearanceNumPerPage) * CharacterAppearanceNumPerPage;
 }
 
-// Sets the color for a specific group
+// Sets the colour for a specific group
 function CharacterAppearanceSetColorForGroup(C, Color, Group) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if (C.Appearance[A].Asset.Group.Name == Group)
@@ -537,7 +537,7 @@ function AppearanceClick() {
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))						
 					{
 						
-						// Keeps the previous color in backup and creates a text box to enter the color
+						// Keeps the previous colour in backup and creates a text box to enter the colour
 						CharacterAppearanceColorPicker = AssetGroup[A].Name;
 						CharacterAppearanceColorPickerBackup = CharacterAppearanceGetCurrentValue(C, CharacterAppearanceColorPicker, "Color");
 						ElementCreateInput("InputColor", "text", ((CharacterAppearanceColorPickerBackup == "Default") || (CharacterAppearanceColorPickerBackup == "None")) ? "#" : CharacterAppearanceColorPickerBackup, "7");
@@ -585,25 +585,25 @@ function AppearanceClick() {
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceReady(C);
 	} else {
 		
-		// Can set a color manually from the text field
+		// Can set a colour manually from the text field
 		if ((MouseX >= 1610) && (MouseX < 1675) && (MouseY >= 37) && (MouseY < 102))
 			if (CommonIsColor(ElementValue("InputColor")))
 				CharacterAppearanceSetColorForGroup(C, ElementValue("InputColor").toLowerCase(), CharacterAppearanceColorPicker);
 
-		// In color picker mode, we can pick a color from the color image
+		// In colour picker mode, we can pick a colour from the colour image
 		if ((MouseX >= 1300) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975)) {
 			var Color = DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data);
 			CharacterAppearanceSetColorForGroup(C, Color, CharacterAppearanceColorPicker);
 			ElementValue("InputColor", Color);
 		}
 		
-		// Accepts the new color
+		// Accepts the new colour
 		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) {
 			CharacterAppearanceSetColorForGroup(C, CharacterAppearanceColorPickerBackup, CharacterAppearanceColorPicker);
 			CharacterAppearanceColorPicker = "";
 		}
 
-		// Cancel out of color picking
+		// Cancel out of colour picking
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceColorPicker = "";
 		if (CharacterAppearanceColorPicker == "") ElementRemove("InputColor");
 		

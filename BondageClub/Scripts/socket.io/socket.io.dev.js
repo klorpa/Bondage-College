@@ -326,7 +326,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * and the Firebug extension (any Firefox version) are known
 	 * to support "%c" CSS customizations.
 	 *
-	 * TODO: add a `localStorage` variable to explicitly enable/disable colors
+	 * TODO: add a `localStorage` variable to explicitly enable/disable colours
 	 */
 	
 	function useColors() {
@@ -337,7 +337,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return true;
 	  }
 	
-	  // Internet Explorer and Edge do not support colors.
+	  // Internet Explorer and Edge do not support colours.
 	  if (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
 	    return false;
 	  }
@@ -368,7 +368,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	/**
-	 * Colorize log arguments if enabled.
+	 * Colourize log arguments if enabled.
 	 *
 	 * @api public
 	 */
@@ -527,7 +527,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	} ())
 	function runTimeout(fun) {
 	    if (cachedSetTimeout === setTimeout) {
-	        //normal enviroments in sane situations
+	        //normal environments in sane situations
 	        return setTimeout(fun, 0);
 	    }
 	    // if setTimeout wasn't available but was latter defined
@@ -536,14 +536,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return setTimeout(fun, 0);
 	    }
 	    try {
-	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        // when when somebody has screwed with setTimeout but no I.E. madness
 	        return cachedSetTimeout(fun, 0);
 	    } catch(e){
 	        try {
 	            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
 	            return cachedSetTimeout.call(null, fun, 0);
 	        } catch(e){
-	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopefully our context correct otherwise it will throw a global error
 	            return cachedSetTimeout.call(this, fun, 0);
 	        }
 	    }
@@ -552,7 +552,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 	function runClearTimeout(marker) {
 	    if (cachedClearTimeout === clearTimeout) {
-	        //normal enviroments in sane situations
+	        //normal environments in sane situations
 	        return clearTimeout(marker);
 	    }
 	    // if clearTimeout wasn't available but was latter defined
@@ -561,14 +561,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return clearTimeout(marker);
 	    }
 	    try {
-	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        // when when somebody has screwed with setTimeout but no I.E. madness
 	        return cachedClearTimeout(marker);
 	    } catch (e){
 	        try {
 	            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
 	            return cachedClearTimeout.call(null, marker);
 	        } catch (e){
-	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopefully our context correct otherwise it will throw a global error.
 	            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
 	            return cachedClearTimeout.call(this, marker);
 	        }
@@ -634,7 +634,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	};
 	
-	// v8 likes predictible objects
+	// v8 likes predictable objects
 	function Item(fun, array) {
 	    this.fun = fun;
 	    this.array = array;
@@ -714,7 +714,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.formatters = {};
 	
 	/**
-	 * Select a color.
+	 * Select a colour.
 	 * @param {String} namespace
 	 * @return {Number}
 	 * @api private
@@ -788,7 +788,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return match;
 	    });
 	
-	    // apply env-specific formatting (colors, etc.)
+	    // apply env-specific formatting (colours, etc.)
 	    exports.formatArgs.call(self, args);
 	
 	    var logFn = debug.log || exports.log || console.log.bind(console);

@@ -205,7 +205,7 @@ function CommonTime() {
 	return new Date().getTime();
 }
 
-// Returns TRUE if the string is a HEX color
+// Returns TRUE if the string is a HEX colour
 function CommonIsColor(Value) {
 	return ((Value != null) && /^#[0-9A-F]{6}$/i.test(Value));
 }

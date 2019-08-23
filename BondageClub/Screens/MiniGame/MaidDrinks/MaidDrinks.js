@@ -80,7 +80,7 @@ function MaidDrinksDrawIcons() {
 // Draw the bars to tell when the moves will hit
 function MaidDrinksDrawBar(SquareType) {
 
-	// The color changes when it's clicked or pressed
+	// The colour changes when it's clicked or pressed
 	DrawRect(1210 + (SquareType * 200), 750, 180, 50, "White");
 	if ((MaidDrinksLastMoveType == SquareType) && (MaidDrinksLastMoveTypeTimer >= MiniGameTimer))
 		DrawRect(1212 + (SquareType * 200), 752, 176, 46, "#66FF66");

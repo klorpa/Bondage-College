@@ -425,7 +425,7 @@ function DialogMenuButtonClick() {
 				return;
 			}
 
-			// Color picker Icon - Starts the color picking
+			// Colour picker Icon - Starts the colour picking
 			if (DialogMenuButton[I] == "ColorPick") {
 				ElementCreateInput("InputColor", "text", (DialogColorSelect!=null) ? DialogColorSelect.toString() : "");
 				DialogColor = "";
@@ -433,7 +433,7 @@ function DialogMenuButtonClick() {
 				return;
 			}
 
-			// When the user selects a color
+			// When the user selects a colour
 			if ((DialogMenuButton[I] == "ColorSelect") && CommonIsColor(ElementValue("InputColor"))) {
 				DialogColor = null;
 				DialogColorSelect = ElementValue("InputColor");
@@ -442,7 +442,7 @@ function DialogMenuButtonClick() {
 				return;
 			}
 
-			// When the user cancels out of color picking
+			// When the user cancels out of colour picking
 			if (DialogMenuButton[I] == "ColorCancel") {
 				DialogColor = null;
 				DialogColorSelect = null;
@@ -589,7 +589,7 @@ function DialogClick() {
 			// If the user wants to click on one of icons in the item menu
 			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 15) && (MouseY <= 105)) DialogMenuButtonClick();
 
-			// In color picker mode, we can pick a color from the color image
+			// In colour picker mode, we can pick a colour from the colour image
 			if ((MouseX >= 1300) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975) && (DialogColor != null))
 				ElementValue("InputColor", DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
 			
