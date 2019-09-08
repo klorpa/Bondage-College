@@ -2,6 +2,7 @@
 var ChatSearchBackground = "IntroductionDark";
 var ChatSearchResult = [];
 var ChatSearchMessage = "";
+var ChatSearchLeaveRoom = "MainHall";
 
 // When the chat screens loads, we loads up to 24 public rooms
 function ChatSearchLoad() {
@@ -37,7 +38,7 @@ function ChatSearchRun() {
 
 		// Draws the hovering text of friends in the current room
 		if (!CommonIsMobile && (MouseX >= 25) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 875)) {
-			
+
 			// Finds the room where the mouse is hovering
 			X = 25;
 			Y = 25;
@@ -59,7 +60,7 @@ function ChatSearchRun() {
 			}
 
 		}
-		
+
 	} else DrawText(TextGet("NoChatRoomFound"), 1000, 450, "White", "Gray");
 
 	// Draw the bottom controls
@@ -78,12 +79,18 @@ function ChatSearchClick() {
 	if ((MouseX >= 1065) && (MouseX < 1385) && (MouseY >= 898) && (MouseY < 962)) ChatSearchQuery();
 	if ((MouseX >= 1415) && (MouseX < 1735) && (MouseY >= 898) && (MouseY < 962)) CommonSetScreen("Online", "ChatCreate");
 	if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 885) && (MouseY < 975)) { ElementRemove("InputSearch"); CommonSetScreen("Character", "FriendList"); FriendListReturn = "ChatSearch"; }
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 885) && (MouseY < 975)) { ElementRemove("InputSearch"); CommonSetScreen("Room", "MainHall"); }
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 885) && (MouseY < 975)) ChatSearchExit();
 }
 
 // When the user press "enter" in the search box, we launch a search query
 function ChatSearchKeyDown() {
 	if (KeyPress == 13) ChatSearchQuery();
+}
+
+// when the user exit this screen
+function ChatSearchExit() {
+	ElementRemove("InputSearch");
+	CommonSetScreen("Room", ChatSearchLeaveRoom);
 }
 
 // When the player wants to join a chat room
@@ -125,5 +132,5 @@ function ChatSearchResponse(data) {
 // Sends a search query to the server
 function ChatSearchQuery() {
 	ChatSearchResult = [];
-	ServerSend("ChatRoomSearch", { Query: ElementValue("InputSearch").toUpperCase().trim() });
+	ServerSend("ChatRoomSearch", { Query: ElementValue("InputSearch").toUpperCase().trim(), Space: ChatRoomSpace });
 }
