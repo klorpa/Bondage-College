@@ -4,8 +4,8 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Desch", "DonOlaf", "Escurse", "EugeneTooms", "Greendragon", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", 
-						 "MunchyCat", "Nick", "Overlord", "Rashiash", "Robin", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Desch", "DonOlaf", "Escurse", "EugeneTooms", "Girvan", "Greendragon", "Kitten", "Laioken", "Michal", "Mindtie", "Misa", "MunchyCat", 
+						 "Nick", "Overlord", "Rashiash", "Robin", "Ryner", "Setsu95", "Shadow", "Shaun", "Shinonon", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 
 // Loads the next thank you bubble
@@ -144,6 +144,7 @@ function LoginResponse(C) {
 			Player.Name = C.Name;
 			Player.AccountName = C.AccountName;
 			Player.AssetFamily = C.AssetFamily;
+			Player.Title = C.Title;
 			if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
 			Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
 			Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
@@ -202,6 +203,8 @@ function LoginResponse(C) {
 				// If the player must log back in the asylum
 				if (LogQuery("Committed", "Asylum")) {
 					CharacterRelease(Player);
+					AsylumEntranceWearPatientClothes(Player);
+					if (ReputationGet("Asylum") <= -50) AsylumEntrancePlayerJacket("Normal");
 					CommonSetScreen("Room", "AsylumBedroom");
 				} else {
 
