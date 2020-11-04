@@ -2477,7 +2477,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = function (opts) {
 	  var xdomain = opts.xdomain;
 	
-	  // scheme must be same when usign XDomainRequest
+	  // scheme must be same when using XDomainRequest
 	  // http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx
 	  var xscheme = opts.xscheme;
 	
@@ -5533,7 +5533,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	
 	/**
-	 * Called upon a server acknowlegement.
+	 * Called upon a server acknowledgment.
 	 *
 	 * @param {Object} packet
 	 * @api private
