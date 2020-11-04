@@ -19,8 +19,8 @@ function InventoryItemNeckAccessoriesCollarNameTagDraw() {
 		var List = DialogFocusItem.Asset.AllowType;
 		var X = 955;
 		var Y = 530;
-		for (var T = 0; T < List.length; T++) {
-			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, List[T].replace(/([A-Z])/g, ' $1').trim(), "White");
+		for (let T = 0; T < List.length; T++) {
+			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, DialogFind(Player, "CollarNameTagType" + List[T]), "White");
 			X = X + 210;
 			if (T % 5 == 4) { 
 				X = 955; 
@@ -40,7 +40,7 @@ function InventoryItemNeckAccessoriesCollarNameTagClick() {
 		var List = DialogFocusItem.Asset.AllowType;
 		var X = 955;
 		var Y = 530;
-		for (var T = 0; T < List.length; T++) {
+		for (let T = 0; T < List.length; T++) {
 			if ((MouseX >= X) && (MouseX <= X + 200) && (MouseY >= Y) && (MouseY <= Y + 55) && (DialogFocusItem.Property.Type != List[T]))
 				InventoryItemNeckAccessoriesCollarNameTagSetType(List[T]);
 			X = X + 210;
@@ -61,14 +61,14 @@ function InventoryItemNeckAccessoriesCollarNameTagSetType(NewType) {
 	}
 	DialogFocusItem.Property.Type = NewType;
 	DialogFocusItem.Property.Effect = [];
-	
-	CharacterRefresh(C);
-	ChatRoomCharacterUpdate(C);
 
-	var msg = DialogFind(Player, "CollarNameTagSet" + ((NewType) ? NewType : ""));
-	msg = msg.replace("SourceCharacter", Player.Name);
-	msg = msg.replace("DestinationCharacter", C.Name);
-	ChatRoomPublishCustomAction(msg, true);
+	// Refreshes the character and chatroom
+	CharacterRefresh(C);
+	var Dictionary = [];
+	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	Dictionary.push({Tag: "NameTagType", TextToLookUp: "CollarNameTagType" + ((NewType) ? NewType : "")});
+	ChatRoomPublishCustomAction("CollarNameTagSet", true, Dictionary);
 	if (DialogInventory != null) {
 		DialogFocusItem = null;
 		DialogMenuButtonBuild(C);

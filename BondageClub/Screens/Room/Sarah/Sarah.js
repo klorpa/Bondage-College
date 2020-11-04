@@ -87,7 +87,7 @@ function SarahSetStatus() {
 	if (LogQuery("AmandaMistress", "NPC-Amanda") && (Player.Owner != "NPC-Amanda")) AmandaStatus = "ExOwner";
 	
 	// They are not accessible if they already are in the private room
-	for(var P = 1; P < PrivateCharacter.length; P++) {
+	for (let P = 1; P < PrivateCharacter.length; P++) {
 		if (PrivateCharacter[P].Name.trim() == "Sarah") { SarahStatus = "InPrivateRoom"; SarahInside = false; }
 		if (PrivateCharacter[P].Name.trim() == "Amanda") AmandaStatus = "InPrivateRoom";
 		if (PrivateCharacter[P].Name.trim() == "Sophie") SophieStatus = "InPrivateRoom";
@@ -118,10 +118,13 @@ function SarahLoad() {
 			InventoryRemove(Sarah, "Nipples");
 			InventoryWear(Sarah, "PussyLight1", "Pussy", "#edd6b0");
 			InventoryWear(Sarah, "Eyes1", "Eyes", "#b98364");
-			InventoryWear(Sarah, "Mouth1", "Mouth", "Default");
+			InventoryWear(Sarah, "Eyes1", "Eyes2", "#b98364");
+			InventoryWear(Sarah, "Mouth", "Mouth", "Default");
+			InventoryWear(Sarah, "H0930", "Height", "Default");
 			InventoryWear(Sarah, "Small", "BodyUpper", "White");
 			InventoryWear(Sarah, "Small", "BodyLower", "White");
 			InventoryWear(Sarah, "Default", "Hands", "White");
+			InventoryWear(Sarah, "Default", "Head", "White");
 			InventoryWear(Sarah, "HairBack19", "HairBack", "#edd6b0");
 			InventoryWear(Sarah, "HairFront11", "HairFront", "#edd6b0");
 			InventoryWear(Sarah, "Bra2", "Bra", "#a02424");
@@ -133,7 +136,7 @@ function SarahLoad() {
 				InventoryWear(Sarah, "SlaveCollar", "ItemNeck");
 				Sarah.Owner = Player.Name;
 			}
-			CharacterSetActivePose(Sarah, "Kneel");
+			CharacterSetActivePose(Sarah, "Kneel", true);
 			AmandaIntroTime = CurrentTime + 400000;
 			SarahCharacter.push(Sarah);
 			
@@ -151,10 +154,13 @@ function SarahLoad() {
 		InventoryRemove(Amanda, "Nipples");
 		InventoryWear(Amanda, "PussyLight3", "Pussy", "#623123");
 		InventoryWear(Amanda, "Eyes7", "Eyes", "#3f289f");
-		InventoryWear(Amanda, "Mouth1", "Mouth", "Default");
+		InventoryWear(Amanda, "Eyes7", "Eyes2", "#3f289f");
+		InventoryWear(Amanda, "Mouth", "Mouth", "Default");
+		InventoryWear(Amanda, "H0950", "Height", "Default");
 		InventoryWear(Amanda, "Normal", "BodyUpper", "White");
 		InventoryWear(Amanda, "Normal", "BodyLower", "White");
 		InventoryWear(Amanda, "Default", "Hands", "White");
+		InventoryWear(Amanda, "Default", "Head", "White");
 		InventoryWear(Amanda, "HairBack15", "HairBack", "#623123");
 		InventoryWear(Amanda, "HairFront4", "HairFront", "#623123");
 		InventoryAdd(Amanda, "StraponPanties", "ItemPelvis");
@@ -184,11 +190,14 @@ function SarahLoad() {
 		InventoryWear(Sophie, "Panties13", "Panties", "#222222");
 		InventoryWear(Sophie, "PussyLight1", "Pussy", "#555555");
 		InventoryWear(Sophie, "Eyes1", "Eyes", "#b08061");
+		InventoryWear(Sophie, "Eyes1", "Eyes2", "#b08061");
 		InventoryWear(Sophie, "Glasses5", "Glasses", "#222222");
-		InventoryWear(Sophie, "Mouth1", "Mouth", "Default");
+		InventoryWear(Sophie, "Mouth", "Mouth", "Default");
+		InventoryWear(Sophie, "H0970", "Height", "Default");
 		InventoryWear(Sophie, "Large", "BodyUpper", "White");
 		InventoryWear(Sophie, "Large", "BodyLower", "White");
 		InventoryWear(Sophie, "Default", "Hands", "White");
+		InventoryWear(Sophie, "Default", "Head", "White");
 		InventoryWear(Sophie, "HairBack16", "HairBack", "#CCCCCC");
 		InventoryWear(Sophie, "HairFront1", "HairFront", "#CCCCCC");
 		CharacterArchetypeClothes(Sophie, "Mistress", "#222222");
@@ -251,7 +260,7 @@ function SarahLoadBackground() {
 function SarahRun() {
 	SarahLoadNewCharacter();
 	SarahLoadBackground();
-	for(var C = 0; C < SarahCharacter.length; C++)
+	for (let C = 0; C < SarahCharacter.length; C++)
 		DrawCharacter(SarahCharacter[C], 1000 - (SarahCharacter.length * 250) + (C * 500), (SarahCharacter[C].IsKneeling()) ? -270 : 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
@@ -261,7 +270,7 @@ function SarahRun() {
 function SarahClick() {
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	for(var C = 0; C < SarahCharacter.length; C++)
+	for (let C = 0; C < SarahCharacter.length; C++)
 		if ((MouseX >= 1000 - (SarahCharacter.length * 250) + (C * 500)) && (MouseX < 1500 - (SarahCharacter.length * 250) + (C * 500)) && (MouseY >= 0) && (MouseY < 1000) && (MouseX < 1885)) {
 			if ((SarahCharacter[C].Name == "Mistress Sophie") || (SarahCharacter[C].Name == "Sophie")) SarahSophieSetPunishmentIntro(0);
 			if ((SarahCharacter[C].ID == 0) || (SarahCharacter[C].Name == "Mistress Sophie") || (SarahCharacter[C].Name == "Sophie") || !SophieInside || (Sophie == null) || ((Sophie.Stage != "200") && (Sophie.Stage != "201")))
@@ -306,7 +315,7 @@ function SarahEvasion() {
 
 // When Sarah leaves the room
 function SarahLeaveRoom() {
-	for(var C = 1; C < SarahCharacter.length; C++)
+	for (let C = 1; C < SarahCharacter.length; C++)
 		if (SarahCharacter[C].Name == "Sarah")
 			SarahCharacter.splice(C, 1);
 	SarahInside = false;
@@ -338,6 +347,7 @@ function SarahTransferToRoom() {
 		C.Love = 100;
 	}
 	if (Player.Lover == "NPC-Sarah") {
+		NPCEventAdd(C, "Girlfriend", CurrentTime);
 		C.Lover = Player.Name;
 		C.Love = 100;
 	}
@@ -348,7 +358,7 @@ function SarahTransferToRoom() {
 
 // When Sarah leaves the room
 function SarahAmandaLeaveRoom() {
-	for(var C = 1; C < SarahCharacter.length; C++)
+	for (let C = 1; C < SarahCharacter.length; C++)
 		if (SarahCharacter[C].Name == "Amanda")
 			SarahCharacter.splice(C, 1);
 	AmandaInside = false;
@@ -357,7 +367,7 @@ function SarahAmandaLeaveRoom() {
 
 // When Sophie leaves the room
 function SarahSophieLeaveRoom() {
-	for(var C = 1; C < SarahCharacter.length; C++)
+	for (let C = 1; C < SarahCharacter.length; C++)
 		if ((SarahCharacter[C].Name == "Sophie") || (SarahCharacter[C].Name == "Mistress Sophie"))
 			SarahCharacter.splice(C, 1);
 	SophieInside = false;
@@ -391,6 +401,7 @@ function SarahTransferAmandaToRoom() {
 		C.Love = 100;
 	}
 	if (Player.Lover == "NPC-Amanda") {
+		NPCEventAdd(C, "Girlfriend", CurrentTime);
 		C.Lover = Player.Name;
 		C.Love = 100;
 	}
@@ -496,8 +507,10 @@ function SarahKickPlayerOut() {
 function SarahTransferSophieToRoom(Love) {
 	if (SarahShackled()) SarahUnlock();
 	SarahSophieLeaveRoom();
-	InventoryAdd(Player, "LeatherCuffs", "ItemArms");
-	InventoryAdd(Player, "LeatherCuffsKey", "ItemArms");
+	var ItemsToEarn = [];
+	ItemsToEarn.push({Name: "LeatherCuffs", Group: "ItemArms"});
+	ItemsToEarn.push({Name: "LeatherCuffsKey", Group: "ItemArms"});
+	InventoryAddMany(Player, ItemsToEarn);
 	CharacterRelease(Sophie);
 	CharacterArchetypeClothes(Sophie, "Mistress", "#333333");
 	CommonSetScreen("Room", "Private");
@@ -542,7 +555,7 @@ function SarahSophiePreparePunishCharacter(C) {
 	InventoryWear(C, "LeatherBelt", "ItemLegs");
 	var Cuffs = InventoryGet(C, "ItemArms");
 	Cuffs.Property = {};
-	Cuffs.Property.Restrain = "Wrist";
+	Cuffs.Property.Type = "Wrist";
 	Cuffs.Property.SetPose = ["BackBoxTie"];
 	Cuffs.Property.Effect = ["Block", "Prone", "Lock"];
 	CharacterRefresh(C);
@@ -612,7 +625,7 @@ function SarahSophieOrgasmGame(Factor) {
 }
 
 // When Sophie releases all the characters but Sarah
-function SarahSophireReleaseEveryoneButSarah() {
+function SarahSophieReleaseEveryoneButSarah() {
 	CharacterRelease(Player);
 	InventoryRemove(Player, "ItemPelvis");
 	InventoryRemove(Player, "ItemBreast");
@@ -688,7 +701,7 @@ function SarahSlaveLockedCuffs(C) {
 		if ((InventoryGet(C, "ItemPelvis") == null) || (InventoryGet(C, "ItemPelvis").Asset.Name != "MetalChastityBelt")) return false;
 		if ((InventoryGet(C, "ItemBreast") == null) || (InventoryGet(C, "ItemBreast").Asset.Name != "MetalChastityBra")) return false;
 		if ((InventoryGet(C, "ItemArms") == null) || (InventoryGet(C, "ItemArms").Asset.Name != "LeatherCuffs")) return false;
-		if ((InventoryGet(C, "ItemArms").Property == null) || (InventoryGet(C, "ItemArms").Property.Restrain == null)) return false;
+		if ((InventoryGet(C, "ItemArms").Property == null) || (InventoryGet(C, "ItemArms").Property.Type == null)) return false;
 		return true;
 	}
 }

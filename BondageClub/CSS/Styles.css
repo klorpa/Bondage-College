@@ -9,6 +9,9 @@ canvas {
 	right: 0;
 	position: absolute;
 }
+TextArea {
+	resize: none;
+}
 * { -webkit-tap-highlight-color:rgba(0,0,0,0); }
 #TextAreaChatLog {
 	background-color: white;
@@ -20,6 +23,7 @@ canvas {
 .ChatMessage {
 	position: relative;
 	padding-left: 0.4em;
+	overflow: hidden;
 }
 .ChatMessage::before {
 	content: attr(data-time);
@@ -40,7 +44,7 @@ canvas {
 .ChatMessageName {
 	text-shadow: 0.05em 0.05em black;
 }
-.ChatMessageAction {
+.ChatMessageAction, .ChatMessageActivity{
 	color: gray;
 }
 .ChatMessageEmote {
@@ -50,6 +54,50 @@ canvas {
 .ChatMessageWhisper {
 	font-style: italic;
 	color: silver;
+}
+#TextAreaChatLog[data-colortheme=dark] {
+	background-color: #111;
+	color: #eee;
+}
+#TextAreaChatLog[data-colortheme=dark] .ChatMessageName {
+	text-shadow: 0.05em 0.05em #eee;
+}
+#TextAreaChatLog[data-colortheme=dark] .ChatMessageWhisper {
+	color: #555;
+}
+#TextAreaChatLog[data-enterleave=smaller] .ChatMessageEnterLeave {
+	font-size: 0.5em;
+	text-align: center;
+}
+#TextAreaChatLog[data-enterleave=hidden] .ChatMessageEnterLeave {
+	display: none;
+}
+#TextAreaChatLog[data-membernumbers=never] .ChatMessage::after,
+#TextAreaChatLog[data-membernumbers=onmouseover] .ChatMessage::after {
+	display: none;
+}
+#TextAreaChatLog[data-membernumbers=onmouseover] .ChatMessage:hover::after {
+	display: block;
+}
+#TextAreaChatLog[data-displaytimestamps=false] .ChatMessage::before {
+	display: none;
+}
+#TextAreaChatLog[data-displaytimestamps=false] .ChatMessage::after {
+	top: 0;
+}
+#TextAreaChatLog[data-colornames=false] .ChatMessageName {
+	color: inherit !important;
+	text-shadow: none;
+	font-weight: bold;
+}
+#TextAreaChatLog[data-coloractions=false] .ChatMessageAction,
+#TextAreaChatLog[data-coloremotes=false] .ChatMessageEmote,
+#TextAreaChatLog[data-coloractivities=false] .ChatMessageActivity {
+	background-color: transparent !important;
+}
+#TextAreaChatLog[data-whitespace=preserve] {
+	white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
 #FriendList {
 	border: 2px solid white;
@@ -83,4 +131,55 @@ canvas {
 }
 .FriendListLinkColumn:Hover{
 	color: cyan !important;
+}
+
+.custom-select {
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: white;
+  color: black;
+  background-image: url('../Icons/Dropdown.png');
+  background-repeat: no-repeat, repeat;
+  background-position: right .7em top 50%, 0 0;
+  background-size: .65em auto, 100%;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: black;
+  padding: 0.2em;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: white;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: cyan;
+}
+
+/* Custom fonts */
+@font-face {
+    font-family: 'Calligraffitti';
+    src: url('../Fonts/Calligraffitti/Calligraffitti-Regular.ttf');
 }

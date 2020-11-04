@@ -2,10 +2,21 @@ Name,Name:
 Title,Title:
 TitleNone,None
 TitleMistress,Mistress
+TitleClubSlave,Club Slave
 TitleHeadMaid,Head Maid
 TitleMaid,Maid
 TitleMasterKidnapper,Master Kidnapper
 TitleKidnapper,Kidnapper
+TitlePatient,Patient
+TitlePermanentPatient,Permanent Patient
+TitleEscapedPatient,Escaped Patient
+TitleNurse,Nurse
+TitleDoctor,Doctor
+TitleLadyLuck,Lady Luck
+TitlePatron,Patron
+TitleCollegeStudent,College Student
+TitleNawashi,Nawashi
+TitleHoudini,Houdini
 TitlePonyFoal,Foal
 TitlePonyFarm,Farm Horse
 TitlePonyCold,Cold Blood Horse
@@ -14,13 +25,9 @@ TitlePonyHot,Hot Blood Horse
 TitlePonyWild,Wild Mustang
 TitlePonyUnicorn,Shining Unicorn
 TitlePonyPegasus,Flying Pegasus
-TitlePatient,Patient
-TitlePermanentPatient,Permanent Patient
-TitleEscapedPatient,Escaped Patient
-TitleNurse,Nurse
-TitleDoctor,Doctor
 MemberNumber,Member Number:
 NoMemberNumber,-
+Relationships,- Relationships -
 Lover,Lover:
 Owner,Owner:
 LoverNone,None
@@ -30,6 +37,10 @@ MemberFor,Member for
 FriendsFor,Friends for
 TrialFor,On trial for
 CollaredFor,Collared for
+LoverFor,Lover for
+DatingFor,Dating for
+EngagedFor,Engaged for
+MarriedFor,Married for
 Days,day(s)
 Unknown,Unknown
 Reputation,- Reputation -
@@ -40,15 +51,25 @@ ReputationMaidPositive,Maid Sorority:
 ReputationKidnapPositive,Kidnappers League:
 ReputationAsylumPositive,Asylum Nurse:
 ReputationAsylumNegative,Asylum Patient:
+ReputationLARPPositive,LARP Battles:
 ReputationGamblingPositive,Gambling Hall:
 ReputationABDLPositive,ABDL:
+LARPClass,LARP Class:
+LARPClassMatron,Matron
+LARPClassSeducer,Seducer
+LARPClassTrickster,Trickster
+LARPClassServant,Servant
+LARPClassArtist,Artist
+LARPClassProtector,Protector
 Skill,- Skills -
 SkillNone,None
 SkillBondage,Bondage:
+SkillSelfBondage,Self-bondage:
 SkillEvasion,Evasion:
 SkillWillpower,Willpower:
 SkillDressage,Dressage:
-SkillModifier,Global modifier:
+SkillModifier,Skills modifier:
+SkillModifierDuration, Time left:
 Trait,- Traits -
 TraitUnknown,Spend more time with her to know her traits
 TraitDominant,Dominant:
@@ -73,9 +94,10 @@ RelationshipPoor,(Poor)
 RelationshipBad,(Bad)
 RelationshipHorrible,(Horrible)
 RelationshipAtrocious,(Atrocious)
-ItemPermission,Item permission:
+ItemPermission,Permission:
 PermissionLevel0,"Everyone, no exceptions"
 PermissionLevel1,"Everyone, except blacklist"
-PermissionLevel2,"Owner, whitelist & Dominants"
-PermissionLevel3,Owner and whitelist only
-PermissionLevel4,Owner only
+PermissionLevel2,"Owner, Lovers, whitelist & Dominants"
+PermissionLevel3,"Owner, Lovers and whitelist only"
+PermissionLevel4,Owner and Lovers only
+PermissionLevel5,Owner only

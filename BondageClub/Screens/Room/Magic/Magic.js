@@ -36,11 +36,16 @@ function MagicAssistantIsntDressRestrain() {return (MagicShowIsState(8) && !Magi
 
 function MagicRestrainMinItem(C, MinItem) {
 	var CurItem = 0;
-	for(var E = 0; E < C.Appearance.length; E++)
-	if ((C.Appearance[E].Asset.Group.Name == "ItemMouth") || (C.Appearance[E].Asset.Group.Name == "ItemArms") || (C.Appearance[E].Asset.Group.Name == "ItemFeet") || (C.Appearance[E].Asset.Group.Name == "ItemLegs") || (C.Appearance[E].Asset.Group.Name == "ItemHead") || (C.Appearance[E].Asset.Group.Name == "ItemMisc")) {
-		CurItem++
+	var GagApplied = false;
+	for (let E = 0; E < C.Appearance.length; E++) {
+		if ((C.Appearance[E].Asset.Group.Name == "ItemMouth") || (C.Appearance[E].Asset.Group.Name == "ItemMouth2") || (C.Appearance[E].Asset.Group.Name == "ItemMouth3")) {
+			GagApplied = true;
+		}
+		else if ((C.Appearance[E].Asset.Group.Name == "ItemArms") || (C.Appearance[E].Asset.Group.Name == "ItemFeet") || (C.Appearance[E].Asset.Group.Name == "ItemLegs") || (C.Appearance[E].Asset.Group.Name == "ItemHead") || (C.Appearance[E].Asset.Group.Name == "ItemMisc")|| (C.Appearance[E].Asset.Group.Name == "ItemHood")) {
+			CurItem++
+		}
 	}
-	return (CurItem >= MinItem) ? true : false;
+	return (CurItem + (GagApplied ? 1 : 0)) >= MinItem;
 }
 
 
@@ -78,13 +83,12 @@ function MagicClick() {
 	if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(MagicAssistant);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	//if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) {console.log("", Player);}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 //Tricks
 ////////////////////////////////////////////////////////////////////////////////////////////
-function MagicTrickChangeDresses(){
+function MagicTrickChangeDresses() {
 	CharacterNaked(Player);
 	CharacterNaked(MagicAssistant);
 	CharacterDress(Player, MagicAssistantAppearance);
@@ -92,7 +96,7 @@ function MagicTrickChangeDresses(){
 	MagicShowState = 2;
 }
 
-function MagicTrickChangeDressesBack(){
+function MagicTrickChangeDressesBack() {
 	CharacterNaked(Player);
 	CharacterNaked(MagicAssistant);
 	CharacterDress(MagicAssistant, MagicAssistantAppearance);
@@ -100,11 +104,11 @@ function MagicTrickChangeDressesBack(){
 	MagicShowState = 1;
 }
 
-function MagicAssistantDress(){
+function MagicAssistantDress() {
 	CharacterNaked(MagicAssistant);
 	var ColorList = ["Default", "#aa8080", "#8080aa", "#aaaa80", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"];
 	var Color = CommonRandomItemFromList("", ColorList);
-	InventoryWear(MagicAssistant, "BunnyEars1", "HairAccessory");
+	InventoryWear(MagicAssistant, "BunnyEars1", "HairAccessory1");
 	InventoryWear(MagicAssistant, "BunnyCollarCuffs", "Cloth");
 	InventoryWear(MagicAssistant, "BunnySuit", "Bra", Color);
 	InventoryWear(MagicAssistant, "Panties15", "Panties");
@@ -184,7 +188,7 @@ function MagicSelectTrick() {
 	}
 }
 
-function MagicTrickChangeBinds(){
+function MagicTrickChangeBinds() {
 	var T = ((Math.random() < 0.5) ? Player : MagicAssistant);
 	MagicRestrainCopyTransfer(MagicPerformer, T);
 	MagicPerformer.AllowItem = false;
@@ -238,7 +242,8 @@ function MagicTrickBoxMilkCan() {
 }
 
 function MagicTrickBoxWaterCell() {
-	InventoryWear(Player, "SuspensionHempRope", "ItemFeet");
+	InventoryWear(Player, "HempRope", "ItemFeet"); 
+	InventoryGet(Player, "ItemFeet").Property = { Type: "Suspension", SetPose: ["LegsClosed", "Suspension"], Difficulty: 6 };
 	InventoryWear(Player, "HempRope", "ItemLegs");
 	InventoryWear(Player, "HempRope", "ItemArms");
 	InventoryWear(Player, "WaterCell", "ItemDevices");
@@ -252,12 +257,12 @@ function MagicTrickGetCoin() {
 	CharacterChangeMoney(Player, MagicMoney);
 }
 
-function MagicSongLeavePerformer(){
+function MagicSongLeavePerformer() {
 	MagicShowState = 6;
 	DialogLeave()
 }
 
-function MagicSongGwendoyn(){
+function MagicSongGwendoyn() {
 	InventoryWear(Player, "HempRope", "ItemFeet");
 	InventoryWear(Player, "HempRope", "ItemLegs");
 	InventoryWear(Player, "LeatherArmbinder", "ItemArms");
@@ -269,7 +274,7 @@ function MagicSongGwendoyn(){
 	MagicShowState = 4;
 }
 
-function MagicSongBadGirl(){
+function MagicSongBadGirl() {
 	var MagicMoney = Math.floor(Math.random() * 6) + 6;
 	MagicAssistant.CurrentDialog = MagicAssistant.CurrentDialog.replace("REPLACEMONEY", MagicMoney.toString());
 	CharacterChangeMoney(Player, MagicMoney);
@@ -304,24 +309,20 @@ function MagicTrickEndPerformance() {
 
 function MagicRestrainCopyTransfer(FromC, ToC) {
 	// Removes any previous appearance asset From second
-	for(var A = 0; A < ToC.Appearance.length; A++)
-		if ((ToC.Appearance[A].Asset != null) && ((ToC.Appearance[A].Asset.Group.Name == "ItemMouth") || (ToC.Appearance[A].Asset.Group.Name == "ItemArms") || (ToC.Appearance[A].Asset.Group.Name == "ItemFeet") || (ToC.Appearance[A].Asset.Group.Name == "ItemLegs") || (ToC.Appearance[A].Asset.Group.Name == "ItemHead") || (ToC.Appearance[A].Asset.Group.Name == "ItemMisc") || (ToC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
+	for (let A = ToC.Appearance.length - 1; A >= 0; A--)
+		if ((ToC.Appearance[A].Asset != null) && ((ToC.Appearance[A].Asset.Group.Name == "ItemMouth") || (ToC.Appearance[A].Asset.Group.Name == "ItemMouth2") || (ToC.Appearance[A].Asset.Group.Name == "ItemMouth3") || (ToC.Appearance[A].Asset.Group.Name == "ItemArms") || (ToC.Appearance[A].Asset.Group.Name == "ItemFeet") || (ToC.Appearance[A].Asset.Group.Name == "ItemLegs") || (ToC.Appearance[A].Asset.Group.Name == "ItemHood") || (ToC.Appearance[A].Asset.Group.Name == "ItemHead") || (ToC.Appearance[A].Asset.Group.Name == "ItemMisc") || (ToC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
 			ToC.Appearance.splice(A, 1);
-			A--;
 		}
 	// Adds all appearance assets from the first character to the second
-	for(var A = 0; A < FromC.Appearance.length; A++)
-		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (FromC.Appearance[A].Asset.Group.Name == "ItemDevices")))
+	for (let A = 0; A < FromC.Appearance.length; A++)
+		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth2") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth3") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemHood") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (FromC.Appearance[A].Asset.Group.Name == "ItemDevices")))
 			ToC.Appearance.push(FromC.Appearance[A]);
 	// Removes any previous appearance asset From first
-	for(var A = 0; A < FromC.Appearance.length; A++)
-		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (FromC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
+	for (let A = FromC.Appearance.length-1; A >=0; A--)
+		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth2") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth3") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemHood") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (FromC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
 			FromC.Appearance.splice(A, 1);
-			A--;
 		}
 	// Refreshes the second character and saves it if it's the player
-	AssetReload(ToC);
-	AssetReload(FromC);
 	CharacterRefresh(ToC);
 	CharacterRefresh(FromC);
 	if (ToC.ID == 0) ServerPlayerAppearanceSync();

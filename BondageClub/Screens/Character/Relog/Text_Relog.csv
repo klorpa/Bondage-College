@@ -1,0 +1,11 @@
+Disconnected,You've disconnected from the server.
+EnterPassword,Enter your password to log back in.
+Account,Account name:
+Password,Password:
+LogBack,Log back
+GiveUp,Give up
+ValidatingNamePassword,Validating name and password...
+InvalidNamePassword,Invalid name or password
+ErrorDisconnectedFromServer,Disconnected from server. Retrying...
+ErrorUnableToConnect,Unable to connect to server. Retrying...
+EnterNamePassword,Enter your name and password

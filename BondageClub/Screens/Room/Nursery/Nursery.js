@@ -22,7 +22,6 @@ var NurseryLeaveMsg = null;								// message about ease of opening nursery gate
 var NurseryEscapeAttempts = null;
 var NursuryEscapeFailMsg = null;
 var NurseryRepeatOffender = null;
-var NurseryRegressedTalk = null;
 
 
 				
@@ -36,6 +35,7 @@ function NurseryPlayerWearingBabyDress() { return (CharacterAppearanceGetCurrent
 function NurseryPlayerReadyToAppologise() { return (NurseryPlayerBadBabyStatus <= 1) }
 function NurseryPlayerDiapered() { return (CharacterAppearanceGetCurrentValue(Player, "Panties", "Name") == "Diapers1") }
 function NurseryPlayerReadyDiapered() { return (NurseryPlayerDiapered() && !NurseryPlayerInappropriateCloth) }
+function NurseryPlayerCanRegress() { return !InventoryGet(Player, "ItemMouth3") && !InventoryGroupIsBlocked(Player, "ItemMouth3") }
 
 
 // Loads the nursery room
@@ -87,7 +87,6 @@ function NurseryRun() {
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
 	if (NurserySituation == ("AtGate") || NurserySituation == ( "Admitted")) {
 		DrawButton(1885, 265, 90, 90, "", "White", "Icons/Crying.png");
-		if (CharacterAppearanceGetCurrentValue(Player, "ItemMouth", "Name") == "PacifierGag") DrawButton(1885, 385, 90, 90, "", "White", "Icons/SpitOutPacifier.png");
 	}
 	NurseryGoodBehaviour();
 	NurseryDrawText();
@@ -113,7 +112,7 @@ function NurseryClick() {
 			NurseryGateMsg = true;
 			NurseryJustClicked = true;
 		}
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
 	}
 	if (NurserySituation == "AtGate") {
 		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
@@ -125,7 +124,6 @@ function NurseryClick() {
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) {
 			NurseryLoadNurse();
 		}
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)) NurseryPlayerSpitOutPacifier();
 	}
 	NurseryJustClicked = null;
 }
@@ -213,19 +211,25 @@ function NurseryNPCResrained(CurrentNPC, RestraintSet) {
 	if (RestraintSet >= 1 || RestraintSet <= 2) InventoryWear(CurrentNPC, "PacifierGag", "ItemMouth");
 	if (RestraintSet == 3) {
 		InventoryWear(CurrentNPC, "PacifierGag", "ItemMouth");
-		InventoryWear(CurrentNPC, "PaddedMittens", "ItemArms");
+		InventoryWear(CurrentNPC, "PaddedMittens", "ItemHands");
 	}
 	if (RestraintSet == 4) {
 		InventoryWear(CurrentNPC, "PacifierGag", "ItemMouth");
-		InventoryWear(CurrentNPC, "PaddedMittensHarness", "ItemArms");
+		InventoryWear(CurrentNPC, "PaddedMittens", "ItemHands");
 		InventoryWear(CurrentNPC, "AdultBabyHarness", "ItemTorso");
+		InventoryWear(CurrentNPC, "MittenChain1", "ItemArms");
 	}
 	if (RestraintSet == 5) {
 		InventoryWear(CurrentNPC, "HarnessPacifierGag", "ItemMouth");
-		InventoryWear(CurrentNPC, "PaddedMittensHarnessLocked", "ItemArms");
+		InventoryWear(CurrentNPC, "PaddedMittens", "ItemHands");
 		InventoryWear(CurrentNPC, "AdultBabyHarness", "ItemTorso");
+		InventoryWear(CurrentNPC, "MittenChain1", "ItemArms");
+		InventoryLock(CurrentNPC, InventoryGet(CurrentNPC, "ItemMouth"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+		InventoryLock(CurrentNPC, InventoryGet(CurrentNPC, "ItemTorso"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+		InventoryLock(CurrentNPC, InventoryGet(CurrentNPC, "ItemArms"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+		InventoryLock(CurrentNPC, InventoryGet(CurrentNPC, "ItemHands"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
 	}
-	if (RestraintSet >= 6) InventoryWear(CurrentNPC, "PaddedMittens", "ItemArms");
+	if (RestraintSet >= 6) InventoryWear(CurrentNPC, "PaddedMittens", "ItemHands");
 }
 
 
@@ -297,23 +301,33 @@ function NurseryPlayerWearBabyDress() {
 // Restraints used on player
 function NurseryPlayerRestrained(RestraintSet) {
 	if (RestraintSet == 1) {
-		InventoryWear(Player, "PaddedMittens", "ItemArms", "Default");
+		InventoryWear(Player, "PaddedMittens", "ItemHands", "Default");
 		InventoryWear(Player, "PacifierGag", "ItemMouth", "Default");
 	}
 	if (RestraintSet == 2) {
-		InventoryWear(Player, "PaddedMittensHarness", "ItemArms", "Default");
+		InventoryWear(Player, "PaddedMittens", "ItemHands", "Default");
 		InventoryWear(Player, "AdultBabyHarness", "ItemTorso", "Default");
+		InventoryWear(Player, "MittenChain1", "ItemArms", "Default");
 	}
 	if (RestraintSet == 3) {
 		InventoryWear(Player, "HarnessPacifierGag", "ItemMouth", "Default");
 		InventoryWear(Player, "AdultBabyHarness", "ItemTorso", "Default");
-		InventoryWear(Player, "PaddedMittensHarnessLocked", "ItemArms", "Default");
+		InventoryWear(Player, "MittenChain1", "ItemArms", "Default");
+		InventoryWear(Player, "PaddedMittens", "ItemHands", "Default");
+		InventoryLock(Player, InventoryGet(Player, "ItemMouth"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+		InventoryLock(Player, InventoryGet(Player, "ItemTorso"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+		InventoryLock(Player, InventoryGet(Player, "ItemArms"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+		InventoryLock(Player, InventoryGet(Player, "ItemHands"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
 		NurseryPlayerNeedsPunishing(2);
 	}
 	if (RestraintSet == 4) {
 		if (!Player.IsRestrained()) {	
 			InventoryWear(Player, "AdultBabyHarness", "ItemTorso", "Default");
-			InventoryWear(Player, "PaddedMittensHarnessLocked", "ItemArms", "Default");
+			InventoryWear(Player, "MittenChain1", "ItemArms", "Default");
+			InventoryWear(Player, "PaddedMittens", "ItemHands", "Default");
+			InventoryLock(Player, InventoryGet(Player, "ItemTorso"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+			InventoryLock(Player, InventoryGet(Player, "ItemArms"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+			InventoryLock(Player, InventoryGet(Player, "ItemHands"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
 		}
 	}
 	if (RestraintSet == 5) {
@@ -322,15 +336,16 @@ function NurseryPlayerRestrained(RestraintSet) {
 	}
 	if (RestraintSet == 6) {
 		NurseryPlayerRestrained(3)
-		CharacterSetActivePose(Player, "Kneel");
+		CharacterSetActivePose(Player, "Kneel", true);
 		InventoryWear(Player, "LeatherBelt", "ItemLegs", "#cccccc");
 		NurseryPlayerNeedsPunishing(2);
 	}
 }
 
-// Player can spits out regular pacifier
-function NurseryPlayerSpitOutPacifier() {
-	InventoryRemove(Player, "ItemMouth");
+// Apply lock to specified item
+function NurseryAddLock(C, LockItem) {
+	var CurrentItem = InventoryGet(Player, LockItem);
+	if ((CurrentItem.Property.LockedBy == null) (CurrentItem.Property.LockedBy != "")) InventoryLock(C, CurrentItem, { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")});
 }
 
 // Player can spits out regular pacifier
@@ -367,7 +382,12 @@ function NurseryBadBabies() {
 // Player will loose skill progress or level from drinking special milk
 function NurseryPlayerSkillsAmnesia() {
 	SkillModifierChange(-1);
-	NurseryRegressedTalk = true;
+	var ItemsToEarn = [];
+	ItemsToEarn.push({Name: "RegressedMilk", Group: "ItemMouth"});
+	ItemsToEarn.push({Name: "RegressedMilk", Group: "ItemMouth2"});
+	ItemsToEarn.push({Name: "RegressedMilk", Group: "ItemMouth3"});
+	InventoryAddMany(Player, ItemsToEarn);
+	InventoryWear(Player, "RegressedMilk", "ItemMouth3");
 }
 
 // Repair Lost skills

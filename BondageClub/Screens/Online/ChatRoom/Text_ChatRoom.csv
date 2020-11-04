@@ -1,20 +1,18 @@
-ActionSwap,SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
-ActionUse,SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
-ActionLock,SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
-ActionAddLock,SourceCharacter adds a NextAsset on DestinationCharacter FocusAssetGroup PrevAsset.
-ActionRemove,SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
-ActionUnlock,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
-ActionDice,SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
-ActionCoin,SourceCharacter flips a coin.  The result is: CoinResult.
-ActionGrabbedForCell,"gets grabbed by two maids and locked in a timer cell, following her owner commands."
-ActionGrabbedToServeDrinks,gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
 ActionGrabbedToServeDrinksIntro,(Two maids grab you and escort you to their quarters.  Another maid addresses you.)  Your owner sent you here to work.
-ActionGiveEnvelopeToOwner,gives a sealed envelope to her owner.
 PublicChat,Talk to everyone
 WhisperTo,Whisper to
-Heads,Heads
-Tails,Tails
-Her,her
-'s,'s
-KneelDown,kneels down
-StandUp,stands up
+OOCWhisperTo,OOC whisper to
+OOCTag,[OOC]
+MenuCut,Keep only 20 messages
+MenuProfile,Your character profile
+MenuAdmin,Room administration
+MenuKneel,Kneel down / Stand up
+MenuDress,Dress your character
+MenuLeave,Leave this chat room
+MenuCancel,Stop leaving
+MenuGameOption,Game options
+OrgasmComing,An orgasm is coming!
+OrgasmResist,Resist!
+OrgasmTryResist,Try to resist
+OrgasmSurrender,Surrender
+OrgasmRecovering,Recovering from an orgasm...
